@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Roll the Die</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Roll the Die</h1>
+    <h2>Round: <span id="round">0</span> </h2>
+	<div class="die red-die" onclick="rollDie('red')">Roll Red Die</div>
+	<div class="die blue-die" onclick="rollDie('blue')">Roll Blue Die</div>
+	<p>Round Points: <span id="round-points">0</span></p>
+	<p>Cumulative Points: <span id="cumulative-points">0</span></p>
+	<script src="script.js"></script>
+</body>
+
+
+<style>
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+    padding: 50px;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.die {
+	width: 200px;
+	height: 200px;
+	background-color: #fff;
+	border: 2px solid #ccc;
+	border-radius: 50%;
+	margin: 50px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.red-die {
+	color: #f00;
+}
+
+.blue-die {
+	color: #00f;
+}
+
+p {
+	margin-top: 50px;
+	font-size: 20px;
+}
+
+span {
+	font-weight: bold;
+}
+</style>
+
+<script>
+	var cumulativePoints = 0;
+    var round = 0;
+
+function rollDie(dieType) {
+	var roundPoints = 0;
+	if (dieType == 'red') {
+		roundPoints = Math.floor(Math.random() * 6) + 1;
+	} else if (dieType == 'blue') {
+		var roll = Math.floor(Math.random() * 6) + 1;
+		if (roll == 5 || roll == 6) {
+			roundPoints = 10;
+		}
+	}
+	cumulativePoints += roundPoints;
+    round++;
+	document.getElementById('round-points').innerHTML = roundPoints;
+	document.getElementById('cumulative-points').innerHTML = cumulativePoints;
+    document.getElementById('round').innerHTML = round;
+}
+
+</script>
+
+</html>
